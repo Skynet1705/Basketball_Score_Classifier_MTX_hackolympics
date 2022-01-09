@@ -61,7 +61,7 @@ def classify_video(request):
         x = []
         y = []
         i = 0
-        count = 0
+        count = 60
         print(len(basket))
         while i <= (len(basket) - 240):
             sliding_window_basket = basket[i:i+240]
@@ -73,10 +73,10 @@ def classify_video(request):
             probab = model.predict_proba(row)
             x.append(count)
             y.append(probab[0][1])
-            count += 1
+            count += 10
             i += 40
         fig = plt.plot(x, y)
-        plt.xlabel("Time")
+        plt.xlabel("Frames from x to x-60")
         plt.ylabel("probability Of score")
         plt.savefig('example.png')
         plt.show()
