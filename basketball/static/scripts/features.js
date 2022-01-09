@@ -39,6 +39,8 @@ $(document).ready(function () {
 
   function predict_score(video) {
     getBase64(video).then((data) => {
+      var formdata = new FormData();
+      formdata.append("video", data);
       $.ajax({
         type: "POST",
         url: "/skynet/features/classify",
